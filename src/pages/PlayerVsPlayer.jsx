@@ -141,7 +141,6 @@ const nextRound = () =>{
       setarr([...arr,obj.value=''])
   }
 }
-console.log('winner:',winner,'counter: ',counter,'tie:',tie);
   return (
     <div className="w-full h-screen flex justify-center items-center">
       <div className="w-[480px] h-[620px]">
@@ -211,10 +210,12 @@ console.log('winner:',winner,'counter: ',counter,'tie:',tie);
         <div className="h-[266px] w-full flex flex-col items-center bg-[#1f3641] p-10 justify-between">
           <h2 className="font[outfit] font-bold text-[#a8bfc9]">{mark==='x'?'PLAYER 1 WINS!':'PLAYER 2 WINS!'}</h2>
           <div className="flex items-center">
-            <img src={xIcon} /> <h1 className="text-[#31c3bd] font-[outfit] font-semibold ml-5 text-5xl">TAKES THE ROUND</h1>
+            <img src={xIcon} alt='img' /> <h1 className="text-[#31c3bd] font-[outfit] font-semibold ml-5 text-5xl">TAKES THE ROUND</h1>
           </div>
           <div>
+            <Link to={'/'}>
             <button className="w-[76px] h-[52px] bg-[#a8bfc9] resetButShad rounded-xl font-[outfit] font-semibold text-[#1a2a33]">QUIT</button>
+            </Link>
             <button onClick={nextRound} className=" ml-4 w-[152px] h-[52px] bg-[#f2b137] buttonShad2  rounded-xl font-[outfit] font-semibold text-[#1a2a33]" >NEXT ROUND</button>
           </div>
         </div>
@@ -225,10 +226,12 @@ console.log('winner:',winner,'counter: ',counter,'tie:',tie);
         <div className="h-[266px] w-full flex flex-col items-center bg-[#1f3641] p-10 justify-between">
           <h2 className="font[outfit] font-bold text-[#a8bfc9]">{mark==='o'?'PLAYER 1 WINS!':'PLAYER 2 WINS!'}</h2>
           <div className="flex items-center">
-            <img src={oIcon} /> <h1 className="text-[#31c3bd] font-[outfit] font-semibold ml-5 text-5xl">TAKES THE ROUND</h1>
+            <img src={oIcon} alt='img' /> <h1 className="text-[#31c3bd] font-[outfit] font-semibold ml-5 text-5xl">TAKES THE ROUND</h1>
           </div>
           <div>
+            <Link to={'/'}>
             <button className="w-[76px] h-[52px] bg-[#a8bfc9] resetButShad rounded-xl font-[outfit] font-semibold text-[#1a2a33]">QUIT</button>
+            </Link>
             <button onClick={nextRound} className=" ml-4 w-[152px] h-[52px] bg-[#f2b137] buttonShad2  rounded-xl font-[outfit] font-semibold text-[#1a2a33]" >NEXT ROUND</button>
           </div>
         </div>
@@ -241,7 +244,9 @@ console.log('winner:',winner,'counter: ',counter,'tie:',tie);
             <h1 className="text-[#a8bfc9] font-[outfit] font-semibold ml-5 text-5xl">ROUND TIED</h1>
           </div>
           <div className="mt-5">
+            <Link to={'/'}>
             <button className="w-[76px] h-[52px] bg-[#a8bfc9] resetButShad rounded-xl font-[outfit] font-semibold text-[#1a2a33]">QUIT</button>
+            </Link>
             <button onClick={nextRound} className=" ml-4 w-[152px] h-[52px] bg-[#f2b137] buttonShad2  rounded-xl font-[outfit] font-semibold text-[#1a2a33]" >NEXT ROUND</button>
           </div>
         </div>
