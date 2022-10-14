@@ -13,7 +13,6 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const PlayerVsAi = () => {
-  const [turn, setturn] = useState(9);
   const mark = localStorage.getItem("mark");
   const [counter, setCounter] = useState(0);
   const [tie, settie] = useState(0);
@@ -308,11 +307,11 @@ const PlayerVsAi = () => {
   };
   return (
     <div className="w-full h-screen flex justify-center items-center">
-      <div className="w-[480px] h-[620px]">
+      <div className="w-[480px] h-[620px] md:p-0 xs:p-4">
         <div className="w-full h-16 flex justify-between items-center px-2">
           <img src={logo} alt="logo" />
-          <div className="w-[140px] shad h-12 mr-4 rounded-md bg-[#1F3641] text-[#A8BFC9] flex justify-center items-center font-[outfit] font-bold">
-            {turn ? (
+          <div className="md:w-[140px] xs:w-[110px] shad md:h-12 mr-4 rounded-md bg-[#1F3641] text-[#A8BFC9] flex justify-center items-center font-[outfit] font-bold">
+            {mark==='x' ? (
               <img className="w-5 m-3" src={xSilver} alt="img" />
             ) : (
               <img className="w-5 m-3" src={oSilver} alt="img" />
@@ -321,24 +320,24 @@ const PlayerVsAi = () => {
           </div>
           <div
             onClick={() => setRestart(true)}
-            className="w-14 h-14 cursor-pointer bg-[#A8BFC9] flex justify-center items-center resetButShad rounded-md"
+            className="md:w-14 xs:w-10 xs:h-10 md:h-14 cursor-pointer bg-[#A8BFC9] flex justify-center items-center resetButShad rounded-md"
           >
             <img src={reset} alt="restart" />
           </div>
         </div>
-        <div className="flex flex-wrap justify-between w-full">
+        <div className="flex flex-wrap justify-between w-full md:mt-0 xs:mt-7">
           {squares[0].map((square, index) => (
             <div
               onMouseEnter={() => hoverMark(square)}
               onMouseLeave={() => mouseLeaveMark(square)}
               onClick={() => handleSquareClick(index)}
               key={square.id}
-              className="w-[140px] h-[140px] rounded-xl bg-[#1F3641] m-2 shad flex justify-center items-center cursor-pointer"
+              className="md:w-[140px] md:h-[140px] xs:w-24 xs:h-24 rounded-xl bg-[#1F3641] m-2 shad flex justify-center items-center cursor-pointer"
             >
-              {square.value === "x" && <img src={xIcon} alt="img" />}
-              {square.value === "o" && <img src={oIcon} alt="imgg" />}
-              {square.hoverValue === "x" && <img src={outlineXIcon} alt="" />}
-              {square.hoverValue === "o" && <img src={outlineOIcon} alt="" />}
+              {square.value === "x" && <img className="md:w-16 md:h-16 xs:w-10 xs:h-10" src={xIcon} alt="img" />}
+              {square.value === "o" && <img className="md:w-16 md:h-16 xs:w-10 xs:h-10" src={oIcon} alt="imgg" />}
+              {square.hoverValue === "x" && <img className="md:w-16 md:h-16 xs:w-10 xs:h-10" src={outlineXIcon} alt="" />}
+              {square.hoverValue === "o" && <img className="md:w-16 md:h-16 xs:w-10 xs:h-10" src={outlineOIcon} alt="" />}
             </div>
           ))}
         </div>
@@ -371,17 +370,17 @@ const PlayerVsAi = () => {
       </div>
       {winner === "x" && (
         <div className="absolute w-full h-screen flex items-center">
-          <div className="h-[266px] w-full flex flex-col items-center bg-[#1f3641] p-10 justify-between">
+          <div className="md:h-[266px] xs:h-[200px] w-full flex flex-col items-center bg-[#1f3641] p-10 justify-between">
             <h2 className="font[outfit] font-bold text-[#a8bfc9]">
               {mark === "x" ? "PLAYER WINS!" : "CPU WINS!"}
             </h2>
             <div className="flex items-center">
-              <img src={xIcon} alt="img" />{" "}
-              <h1 className="text-[#31c3bd] font-[outfit] font-semibold ml-5 text-5xl">
+              <img className="md:w-16 md:h-16 xs:w-10 xs:h-10" src={xIcon} alt="img" />{" "}
+              <h1 className="text-[#31c3bd] font-[outfit] font-semibold ml-5 md:text-5xl xs:text-2xl">
                 TAKES THE ROUND
               </h1>
             </div>
-            <div>
+            <div className="md:mt-0 xs:mt-4">
               <Link to={"/"}>
                 <button className="w-[76px] h-[52px] bg-[#a8bfc9] resetButShad rounded-xl font-[outfit] font-semibold text-[#1a2a33]">
                   QUIT
@@ -399,17 +398,17 @@ const PlayerVsAi = () => {
       )}
       {winner === "o" && (
         <div className="absolute w-full h-screen flex items-center">
-          <div className="h-[266px] w-full flex flex-col items-center bg-[#1f3641] p-10 justify-between">
+          <div className="md:h-[266px] xs:h-[200px] w-full flex flex-col items-center bg-[#1f3641] p-10 justify-between">
             <h2 className="font[outfit] font-bold text-[#a8bfc9]">
               {mark === "o" ? "PLAYER WINS!" : "CPU WINS!"}
             </h2>
             <div className="flex items-center">
-              <img src={oIcon} alt="img" />{" "}
-              <h1 className="text-[#31c3bd] font-[outfit] font-semibold ml-5 text-5xl">
+              <img className="md:w-16 md:h-16 xs:w-10 xs:h-10" src={oIcon} alt="img" />{" "}
+              <h1 className="text-[#31c3bd] font-[outfit] font-semibold ml-5 md:text-5xl xs:text-2xl">
                 TAKES THE ROUND
               </h1>
             </div>
-            <div>
+            <div className="md:mt-0 xs:mt-4">
               <Link to={"/"}>
                 <button className="w-[76px] h-[52px] bg-[#a8bfc9] resetButShad rounded-xl font-[outfit] font-semibold text-[#1a2a33]">
                   QUIT
@@ -427,10 +426,10 @@ const PlayerVsAi = () => {
       )}
       {tieDetector && (
         <div className="absolute w-full h-screen flex items-center">
-          <div className="h-[266px] w-full flex flex-col items-center bg-[#1f3641] p-16">
+          <div className="md:h-[266px] xs:h-[200px] w-full flex flex-col items-center bg-[#1f3641] p-16">
             <div className="flex items-center">
-              <h1 className="text-[#a8bfc9] font-[outfit] font-semibold ml-5 text-5xl">
-                ROUND TIED
+              <h1 className="text-[#a8bfc9] font-[outfit] font-semibold ml-5 md:text-5xl xs:text-2xl">
+                ROUND TIED!
               </h1>
             </div>
             <div className="mt-5">
@@ -451,21 +450,21 @@ const PlayerVsAi = () => {
       )}
       {restart && (
         <div className="absolute w-full h-screen flex items-center">
-          <div className="h-[266px] w-full flex flex-col items-center bg-[#1f3641] p-16">
+          <div className="md:h-[266px] xs:h-[200px] w-full flex flex-col items-center bg-[#1f3641] p-16">
             <div className="flex items-center">
-              <h1 className="text-[#a8bfc9] font-[outfit] font-semibold ml-5 text-5xl">
+              <h1 className="text-[#a8bfc9] font-[outfit] font-semibold ml-5 md:text-5xl xs:text-2xl">
                 RESTART GAME?
               </h1>
             </div>
             <div className="mt-5">
               <button
                 onClick={() => setRestart(false)}
-                className="w-[139px] h-[52px] bg-[#a8bfc9] resetButShad rounded-xl font-[outfit] font-semibold text-[#1a2a33]"
+                className="md:w-[139px] xs:w-[110px] h-[52px] bg-[#a8bfc9] resetButShad rounded-xl font-[outfit] font-semibold text-[#1a2a33]"
               >
                 NO, CANCEL
               </button>
               <Link to={"/"}>
-                <button className=" ml-4 w-[152px] h-[52px] bg-[#f2b137] buttonShad2  rounded-xl font-[outfit] font-semibold text-[#1a2a33]">
+                <button className=" ml-4 md:w-[152px] xs:w-[120px] h-[52px] bg-[#f2b137] buttonShad2  rounded-xl font-[outfit] font-semibold text-[#1a2a33]">
                   YES, RESTART
                 </button>
               </Link>

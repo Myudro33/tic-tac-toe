@@ -9,13 +9,13 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 const Main = () => {
   const [mark, setmark] = useState("");
- useEffect(()=>{
-localStorage.setItem('mark',mark)
- },[mark]) 
+  useEffect(() => {
+    localStorage.setItem("mark", mark);
+  }, [mark]);
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center">
       <img className="m-10" src={logo} alt="img" />
-      <div className="w-[450px] h-[210px] flex flex-col items-center bg-[#1F3641] shad rounded-lg mb-7">
+      <div className="md:w-[450px] xs:w-[90%] md:h-[210px] flex flex-col items-center bg-[#1F3641] shad rounded-lg mb-7">
         <h1 className="text-[#A8BFC9] font-[outfit] font-bold tracking-widest m-5">
           PICK PLAYER 1'S MARK
         </h1>
@@ -52,13 +52,13 @@ localStorage.setItem('mark',mark)
       {mark !== "" ? (
         <>
           <Link
-            className="w-[450px] h-14 m-2 rounded-lg flex justify-center items-center text-xl font-[outfit] font-bold tracking-widest bg-[#F2B137] buttonShad2 text-[#1A2A33]"
+            className="md:w-[450px] xs:w-[90%] h-14 m-2 rounded-lg flex justify-center items-center text-xl font-[outfit] font-bold tracking-widest bg-[#F2B137] buttonShad2 text-[#1A2A33]"
             to={"/playervsai"}
           >
             NEW GAME (VS CPU)
           </Link>
           <Link
-            className="w-[450px] h-14 m-2 rounded-lg flex justify-center items-center text-xl font-[outfit] font-bold tracking-widest bg-[#31C3BD] buttonShad text-[#1A2A33]"
+            className="md:w-[450px] xs:w-[90%] h-14 m-2 rounded-lg flex justify-center items-center text-xl font-[outfit] font-bold tracking-widest bg-[#31C3BD] buttonShad text-[#1A2A33]"
             to={"/playervsplayer"}
           >
             NEW GAME (VS PLAYER)
@@ -67,13 +67,13 @@ localStorage.setItem('mark',mark)
       ) : (
         <>
           <button
-            className="w-[450px] h-14 m-2 rounded-lg flex justify-center items-center text-xl font-[outfit] font-bold tracking-widest bg-[#F2B137] buttonShad2 text-[#1A2A33]"
+            className="md:w-[450px] xs:w-[90%] h-14 m-2 rounded-lg flex justify-center items-center text-xl font-[outfit] font-bold tracking-widest bg-[#F2B137] buttonShad2 text-[#1A2A33]"
             to={"/playervsai"}
           >
             NEW GAME (VS CPU)
           </button>
           <button
-            className="w-[450px] h-14 m-2 rounded-lg flex justify-center items-center text-xl font-[outfit] font-bold tracking-widest bg-[#31C3BD] buttonShad text-[#1A2A33]"
+            className="md:w-[450px] xs:w-[90%] h-14 m-2 rounded-lg flex justify-center items-center text-xl font-[outfit] font-bold tracking-widest bg-[#31C3BD] buttonShad text-[#1A2A33]"
             to={"/playervsplayer"}
           >
             NEW GAME (VS PLAYER)
