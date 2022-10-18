@@ -80,106 +80,102 @@ const PlayerVsAi = () => {
     [1, 5, 9],
     [3, 5, 7],
   ];
-
   useEffect(() => {
-    if(mark==='x'){
-    const isComputerTurn =
-      squares[0].filter((square) => square.value !== "").length % 2 === 1;
+    if (mark === "x") {
+      const isComputerTurn =
+        squares[0].filter((square) => square.value !== "").length % 2 === 1;
 
-    const emptyIndexes = squares[0]
-      .map((square, index) => (square.value === "" ? index + 1 : ""))
-      .filter((val) => val !== "");
+      const emptyIndexes = squares[0]
+        .map((square, index) => (square.value === "" ? index + 1 : ""))
+        .filter((val) => val !== "");
 
-    const putComputerAt = (index) => {
-      for (const obj of squares[0]) {
-        if (obj.id === index && obj.value === "" && winner === "") {
-          setSquares([
-            ...squares,
-            (obj.value = mark === "x" ? "o" : "x"),
-            (obj.hoverValue = ""),
-          ]);
-          setCounter((prevCounter) => prevCounter + 1);
-
-          for (const method of lines) {
-            if (method.includes(obj.id)) {
-              if (
-                squares[0][method[0] - 1].value ===
-                  squares[0][method[1] - 1].value &&
-                squares[0][method[2] - 1].value ===
-                  squares[0][method[1] - 1].value
-              ) {
-                setCounter(0);
-                setWinner(squares[0][method[0] - 1].value);
+      const putComputerAt = (index) => {
+        for (const obj of squares[0]) {
+          if (obj.id === index && obj.value === "" && winner === "") {
+            setSquares([
+              ...squares,
+              (obj.value = mark === "x" ? "o" : "x"),
+              (obj.hoverValue = ""),
+            ]);
+            setCounter((prevCounter) => prevCounter + 1);
+            for (const method of lines) {
+              if (method.includes(obj.id)) {
+                if (
+                  squares[0][method[0] - 1].value ===
+                    squares[0][method[1] - 1].value &&
+                  squares[0][method[2] - 1].value ===
+                    squares[0][method[1] - 1].value
+                ) {
+                  setCounter(0);
+                  setWinner(squares[0][method[0] - 1].value);
+                }
               }
             }
           }
         }
-      }
-    };
-    if (isComputerTurn && winner === "") {
-      const randomIndex =
-        emptyIndexes[Math.ceil(Math.random() * emptyIndexes.length)];
-      if (randomIndex !== undefined) {
-        putComputerAt(randomIndex);
-        return;
-      } else {
+      };
+      if (isComputerTurn && winner === "") {
         const randomIndex =
           emptyIndexes[Math.ceil(Math.random() * emptyIndexes.length)];
-        putComputerAt(randomIndex ? randomIndex : emptyIndexes[0]);
-
-        return;
+        if (randomIndex !== undefined) {
+          putComputerAt(randomIndex);
+          return;
+        } else {
+          const randomIndex =
+            emptyIndexes[Math.ceil(Math.random() * emptyIndexes.length)];
+          putComputerAt(randomIndex ? randomIndex : emptyIndexes[0]);
+          return;
+        }
       }
-    }
-  }
-  else if(mark==='o'){
-    const isComputerTurn =
-    squares[0].filter((square) => square.value !== "").length % 2 === 0;
+    } else if (mark === "o") {
+      const isComputerTurn =
+        squares[0].filter((square) => square.value !== "").length % 2 === 0;
 
-  const emptyIndexes = squares[0]
-    .map((square, index) => (square.value === "" ? index + 1 : ""))
-    .filter((val) => val !== "");
+      const emptyIndexes = squares[0]
+        .map((square, index) => (square.value === "" ? index + 1 : ""))
+        .filter((val) => val !== "");
 
-  const putComputerAt = (index) => {
-    for (const obj of squares[0]) {
-      if (obj.id === index && obj.value === "" && winner === "") {
-        setSquares([
-          ...squares,
-          (obj.value = mark === "x" ? "o" : "x"),
-          (obj.hoverValue = ""),
-        ]);
-        setCounter((prevCounter) => prevCounter + 1);
+      const putComputerAt = (index) => {
+        for (const obj of squares[0]) {
+          if (obj.id === index && obj.value === "" && winner === "") {
+            setSquares([
+              ...squares,
+              (obj.value = mark === "x" ? "o" : "x"),
+              (obj.hoverValue = ""),
+            ]);
+            setCounter((prevCounter) => prevCounter + 1);
 
-        for (const method of lines) {
-          if (method.includes(obj.id)) {
-            if (
-              squares[0][method[0] - 1].value ===
-                squares[0][method[1] - 1].value &&
-              squares[0][method[2] - 1].value ===
-                squares[0][method[1] - 1].value
-            ) {
-              setCounter(0);
-              setWinner(squares[0][method[0] - 1].value);
+            for (const method of lines) {
+              if (method.includes(obj.id)) {
+                if (
+                  squares[0][method[0] - 1].value ===
+                    squares[0][method[1] - 1].value &&
+                  squares[0][method[2] - 1].value ===
+                    squares[0][method[1] - 1].value
+                ) {
+                  setCounter(0);
+                  setWinner(squares[0][method[0] - 1].value);
+                }
+              }
             }
           }
         }
+      };
+      if (isComputerTurn && winner === "") {
+        const randomIndex =
+          emptyIndexes[Math.ceil(Math.random() * emptyIndexes.length)];
+        if (randomIndex !== undefined) {
+          putComputerAt(randomIndex);
+          return;
+        } else {
+          const randomIndex =
+            emptyIndexes[Math.ceil(Math.random() * emptyIndexes.length)];
+          putComputerAt(randomIndex ? randomIndex : emptyIndexes[0]);
+
+          return;
+        }
       }
     }
-  };
-  if (isComputerTurn && winner === "") {
-    const randomIndex =
-      emptyIndexes[Math.ceil(Math.random() * emptyIndexes.length)];
-    if (randomIndex !== undefined) {
-      putComputerAt(randomIndex);
-      return;
-    } else {
-      const randomIndex =
-        emptyIndexes[Math.ceil(Math.random() * emptyIndexes.length)];
-      putComputerAt(randomIndex ? randomIndex : emptyIndexes[0]);
-
-      return;
-    }
-  }
-  }
   }, [squares]);
 
   const handleSquareClick = (index) => {
@@ -211,7 +207,7 @@ const PlayerVsAi = () => {
     };
     const isPLayerTurn =
       squares[0].filter((square) => square.value !== "").length % 2 === 0;
-    if (mark==='x'?isPLayerTurn:!isPLayerTurn) {
+    if (mark === "x" ? isPLayerTurn : !isPLayerTurn) {
       for (const obj of squares[0]) {
         if (obj.id === index + 1 && obj.value === "") {
           setSquares([
@@ -221,47 +217,48 @@ const PlayerVsAi = () => {
           ]);
           setCounter((prevCounter) => prevCounter + 1);
 
-          for (const method of lines) {
-            if (method.includes(obj.id)&&winner==='') {
-              if (
-                // bolo ujra
-                squares[0][method[0] - 1].value === mark &&
-                squares[0][method[1] - 1].value === mark &&
-                squares[0][method[2] - 1].value === ""
-              ) {
-                putComputerAt(squares[0][method[2] - 1].id);
+          if (winner === "") {
+            for (const method of lines) {
+              if (method.includes(obj.id) && winner === "") {
+                if (
+                  // bolo ujra
+                  squares[0][method[0] - 1].value === mark &&
+                  squares[0][method[1] - 1].value === mark &&
+                  squares[0][method[2] - 1].value === ""
+                ) {
+                  putComputerAt(squares[0][method[2] - 1].id);
 
-                return;
-              } else if (
-                // pirveli ujra
-                squares[0][method[2] - 1].value === mark &&
-                squares[0][method[1] - 1].value === mark &&
-                squares[0][method[0] - 1].value === ""
-              ) {
-                putComputerAt(squares[0][method[0] - 1].id);
+                  return;
+                } else if (
+                  // pirveli ujra
+                  squares[0][method[2] - 1].value === mark &&
+                  squares[0][method[1] - 1].value === mark &&
+                  squares[0][method[0] - 1].value === ""
+                ) {
+                  putComputerAt(squares[0][method[0] - 1].id);
 
-                return;
-              } else if (
-                // shua ujra
-                squares[0][method[0] - 1].value === mark &&
-                squares[0][method[2] - 1].value === mark &&
-                squares[0][method[1] - 1].value === ""
-              ) {
-                putComputerAt(squares[0][method[1] - 1].id);
-
-                return;
+                  return;
+                } else if (
+                  // shua ujra
+                  squares[0][method[0] - 1].value === mark &&
+                  squares[0][method[2] - 1].value === mark &&
+                  squares[0][method[1] - 1].value === ""
+                ) {
+                  putComputerAt(squares[0][method[1] - 1].id);
+                  return;
+                }
               }
-            }
 
-            if (method.includes(obj.id)) {
-              if (
-                squares[0][method[0] - 1].value ===
-                  squares[0][method[1] - 1].value &&
-                squares[0][method[2] - 1].value ===
-                  squares[0][method[1] - 1].value
-              ) {
-                setCounter(0);
-                setWinner(squares[0][method[0] - 1].value);
+              if (method.includes(obj.id && winner === "")) {
+                if (
+                  squares[0][method[0] - 1].value ===
+                    squares[0][method[1] - 1].value &&
+                  squares[0][method[2] - 1].value ===
+                    squares[0][method[1] - 1].value
+                ) {
+                  setCounter(0);
+                  setWinner(squares[0][method[0] - 1].value);
+                }
               }
             }
           }
@@ -269,6 +266,29 @@ const PlayerVsAi = () => {
       }
     }
   };
+
+  useEffect(() => {
+    if (winner === "" && counter !== 9) {
+      for (const obj of squares[0]) {
+        for (const method of lines) {
+          if (method.includes(obj.id) && winner === "") {
+            if (
+              squares[0][method[0] - 1].value ===
+                squares[0][method[1] - 1].value &&
+              squares[0][method[2] - 1].value ===
+                squares[0][method[1] - 1].value
+            ) {
+              setWinner(squares[0][method[0] - 1].value);
+            }
+          }
+        }
+      }
+    }
+    if (counter === 9 && winner === "") {
+      settie((prevtie) => prevtie + 1);
+      setTieDetector(true);
+    }
+  }, [counter]);
 
   useEffect(() => {
     if (counter === 9 && winner === "") {
@@ -301,9 +321,7 @@ const PlayerVsAi = () => {
     setWinner("");
     setTieDetector(false);
     setCounter(0);
-    for (const obj of squares[0]) {
-      setSquares([...squares, (obj.value = "")]);
-    }
+    setSquares([boxes]);
   };
   return (
     <div className="w-full h-screen flex justify-center items-center">
@@ -311,7 +329,7 @@ const PlayerVsAi = () => {
         <div className="w-full h-16 flex justify-between items-center px-2">
           <img src={logo} alt="logo" />
           <div className="md:w-[140px] xs:w-[110px] shad md:h-12 mr-4 rounded-md bg-[#1F3641] text-[#A8BFC9] flex justify-center items-center font-[outfit] font-bold">
-            {mark==='x' ? (
+            {mark === "x" ? (
               <img className="w-5 m-3" src={xSilver} alt="img" />
             ) : (
               <img className="w-5 m-3" src={oSilver} alt="img" />
@@ -334,10 +352,34 @@ const PlayerVsAi = () => {
               key={square.id}
               className="md:w-[140px] md:h-[140px] xs:w-24 xs:h-24 rounded-xl bg-[#1F3641] m-2 shad flex justify-center items-center cursor-pointer"
             >
-              {square.value === "x" && <img className="md:w-16 md:h-16 xs:w-10 xs:h-10" src={xIcon} alt="img" />}
-              {square.value === "o" && <img className="md:w-16 md:h-16 xs:w-10 xs:h-10" src={oIcon} alt="imgg" />}
-              {square.hoverValue === "x" && <img className="md:w-16 md:h-16 xs:w-10 xs:h-10" src={outlineXIcon} alt="" />}
-              {square.hoverValue === "o" && <img className="md:w-16 md:h-16 xs:w-10 xs:h-10" src={outlineOIcon} alt="" />}
+              {square.value === "x" && (
+                <img
+                  className="md:w-16 md:h-16 xs:w-10 xs:h-10"
+                  src={xIcon}
+                  alt="img"
+                />
+              )}
+              {square.value === "o" && (
+                <img
+                  className="md:w-16 md:h-16 xs:w-10 xs:h-10"
+                  src={oIcon}
+                  alt="imgg"
+                />
+              )}
+              {square.hoverValue === "x" && (
+                <img
+                  className="md:w-16 md:h-16 xs:w-10 xs:h-10"
+                  src={outlineXIcon}
+                  alt=""
+                />
+              )}
+              {square.hoverValue === "o" && (
+                <img
+                  className="md:w-16 md:h-16 xs:w-10 xs:h-10"
+                  src={outlineOIcon}
+                  alt=""
+                />
+              )}
             </div>
           ))}
         </div>
@@ -375,7 +417,11 @@ const PlayerVsAi = () => {
               {mark === "x" ? "PLAYER WINS!" : "CPU WINS!"}
             </h2>
             <div className="flex items-center">
-              <img className="md:w-16 md:h-16 xs:w-10 xs:h-10" src={xIcon} alt="img" />{" "}
+              <img
+                className="md:w-16 md:h-16 xs:w-10 xs:h-10"
+                src={xIcon}
+                alt="img"
+              />{" "}
               <h1 className="text-[#31c3bd] font-[outfit] font-semibold ml-5 md:text-5xl xs:text-2xl">
                 TAKES THE ROUND
               </h1>
@@ -403,7 +449,11 @@ const PlayerVsAi = () => {
               {mark === "o" ? "PLAYER WINS!" : "CPU WINS!"}
             </h2>
             <div className="flex items-center">
-              <img className="md:w-16 md:h-16 xs:w-10 xs:h-10" src={oIcon} alt="img" />{" "}
+              <img
+                className="md:w-16 md:h-16 xs:w-10 xs:h-10"
+                src={oIcon}
+                alt="img"
+              />{" "}
               <h1 className="text-[#31c3bd] font-[outfit] font-semibold ml-5 md:text-5xl xs:text-2xl">
                 TAKES THE ROUND
               </h1>
