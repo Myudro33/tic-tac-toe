@@ -90,8 +90,9 @@ const PlayerVsAi = () => {
         .filter((val) => val !== "");
 
       const putComputerAt = (index) => {
+        if(winner===''){
         for (const obj of squares[0]) {
-          if (obj.id === index && obj.value === "" && winner === "") {
+          if (obj.id === index && obj.value === "" && winner === "" &&counter!==8) {
             setSquares([
               ...squares,
               (obj.value = mark === "x" ? "o" : "x"),
@@ -113,17 +114,20 @@ const PlayerVsAi = () => {
             }
           }
         }
+      }
       };
       if (isComputerTurn && winner === "") {
         const randomIndex =
           emptyIndexes[Math.ceil(Math.random() * emptyIndexes.length)];
-        if (randomIndex !== undefined) {
+        if (randomIndex !== undefined&&winner==='') {
           putComputerAt(randomIndex);
           return;
         } else {
           const randomIndex =
             emptyIndexes[Math.ceil(Math.random() * emptyIndexes.length)];
-          putComputerAt(randomIndex ? randomIndex : emptyIndexes[0]);
+            if(winner===''){
+              putComputerAt(randomIndex ? randomIndex : emptyIndexes[0]);
+            }
           return;
         }
       }
@@ -284,18 +288,23 @@ const PlayerVsAi = () => {
         }
       }
     }
-    if (counter === 9 && winner === "") {
+console.log(counter);
+  }, [counter]);
+
+  useEffect(() => {
+    if (winner === "x") {
+      setX((prevx) => prevx + 1);
+    } else if (winner === "o") {
+      setO((prevO) => prevO + 1);
+    }
+  }, [winner]);
+
+  useEffect(() => {
+    if (winner === "" && counter > 8 ) {
       settie((prevtie) => prevtie + 1);
       setTieDetector(true);
     }
   }, [counter]);
-
-  useEffect(() => {
-    if (counter === 9 && winner === "") {
-      settie((prevtie) => prevtie + 1);
-      setTieDetector(true);
-    }
-  }, [winner, counter]);
   const hoverMark = (square) => {
     for (const obj of squares[0]) {
       if (square.value === "" && square.id === obj.id) {
@@ -310,13 +319,7 @@ const PlayerVsAi = () => {
       }
     }
   };
-  useEffect(() => {
-    if (winner === "x") {
-      setX((prevx) => prevx + 1);
-    } else if (winner === "o") {
-      setO((prevO) => prevO + 1);
-    }
-  }, [winner]);
+
   const nextRound = () => {
     setWinner("");
     setTieDetector(false);
@@ -325,7 +328,7 @@ const PlayerVsAi = () => {
   };
   return (
     <div className="w-full h-screen flex justify-center items-center">
-      <div className="w-[480px] h-[620px] md:p-0 xs:p-4">
+      <div className="w-[480px] h-[620px] md:p-0 xs:p-5">
         <div className="w-full h-16 flex justify-between items-center px-2">
           <img src={logo} alt="logo" />
           <div className="md:w-[140px] xs:w-[110px] shad md:h-12 mr-4 rounded-md bg-[#1F3641] text-[#A8BFC9] flex justify-center items-center font-[outfit] font-bold">
